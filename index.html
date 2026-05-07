@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>aftershot — lista de espera</title>
+  <meta name="description" content="O primeiro suplemento premium formulado para quem usa GLP-1. Seja o primeiro a saber quando lançarmos." />
+  <meta property="og:title" content="aftershot daily — lista de espera" />
+  <meta property="og:description" content="Vitaminas, minerais e fitoterápicos formulados para a geração do GLP-1." />
+  <meta property="og:image" content="../assets/produto/aftershot-daily-hero.png" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── Reset & Base ─────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:       #F5F0E8;
+      --verde:       #2D4A3E;
+      --dourado:     #C9A84C;
+      --areia:       #D4C5A9;
+      --grafite:     #1A1A1A;
+      --verde-claro: #4A7A65;
+      --branco:      #FFFFFF;
+      --ff-display:  'Cormorant Garamond', Georgia, serif;
+      --ff-body:     'DM Sans', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--cream);
+      color: var(--grafite);
+      font-family: var(--ff-body);
+      font-weight: 300;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── Typography ───────────────────────────────── */
+    .display {
+      font-family: var(--ff-display);
+      font-weight: 300;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+    }
+
+    /* ── Layout ───────────────────────────────────── */
+    .container {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    section { padding: 80px 0; }
+
+    /* ── Header ───────────────────────────────────── */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(245, 240, 232, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(212, 197, 169, 0.3);
+    }
+
+    .logo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+    }
+
+    .logo-mark {
+      width: 32px;
+      height: 32px;
+      border: 1px solid var(--verde);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--ff-display);
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--verde);
+      letter-spacing: 0.05em;
+    }
+
+    .logo-name {
+      font-family: var(--ff-body);
+      font-size: 13px;
+      font-weight: 300;
+      letter-spacing: 0.18em;
+      color: var(--grafite);
+      text-transform: lowercase;
+    }
+
+    /* ── Hero ─────────────────────────────────────── */
+    #hero {
+      min-height: 100svh;
+      padding-top: 100px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 60px;
+    }
+
+    .hero-content { display: flex; flex-direction: column; gap: 28px; }
+
+    .hero-eyebrow {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--verde-claro);
+    }
+
+    .hero-title {
+      font-size: clamp(40px, 5vw, 62px);
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--verde);
+    }
+
+    .hero-sub {
+      font-size: 17px;
+      font-weight: 300;
+      color: #555;
+      max-width: 420px;
+      line-height: 1.75;
+    }
+
+    .hero-image-wrap {
+      position: relative;
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-image-wrap img {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 4px;
+      object-fit: cover;
+    }
+
+    .hero-badge {
+      position: absolute;
+      bottom: 24px;
+      right: 0;
+      background: var(--verde);
+      color: var(--cream);
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      padding: 8px 16px;
+      border-radius: 2px;
+    }
+
+    /* ── Form ─────────────────────────────────────── */
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 440px;
+    }
+
+    .form-label {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--grafite);
+    }
+
+    .form-row {
+      display: flex;
+      gap: 0;
+      border: 1px solid rgba(45, 74, 62, 0.4);
+      border-radius: 2px;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+
+    .form-row:focus-within { border-color: var(--verde); }
+
+    .form-input {
+      flex: 1;
+      padding: 14px 18px;
+      background: transparent;
+      border: none;
+      outline: none;
+      font-family: var(--ff-body);
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--grafite);
+      min-width: 0;
+    }
+
+    .form-input::placeholder { color: #999; }
+
+    .form-btn {
+      padding: 14px 22px;
+      background: var(--verde);
+      color: var(--cream);
+      border: none;
+      cursor: pointer;
+      font-family: var(--ff-body);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      transition: background 0.2s;
+    }
+
+    .form-btn:hover { background: #1e3329; }
+    .form-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    .form-note {
+      font-size: 11px;
+      color: #888;
+      letter-spacing: 0.02em;
+    }
+
+    .form-success {
+      display: none;
+      padding: 14px 18px;
+      background: rgba(45, 74, 62, 0.08);
+      border-left: 2px solid var(--verde);
+      font-size: 14px;
+      color: var(--verde);
+    }
+
+    /* ── Divider ──────────────────────────────────── */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--areia), transparent);
+    }
+
+    /* ── Problema ─────────────────────────────────── */
+    #problema { background: var(--branco); }
+
+    .section-eyebrow {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--verde-claro);
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-size: clamp(30px, 4vw, 46px);
+      margin-bottom: 16px;
+    }
+
+    .section-sub {
+      font-size: 17px;
+      font-weight: 300;
+      color: #555;
+      max-width: 560px;
+      margin-bottom: 56px;
+      line-height: 1.75;
+    }
+
+    .problema-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+
+    .problema-card {
+      padding: 32px 28px;
+      background: var(--cream);
+      border-radius: 2px;
+      border-top: 2px solid var(--verde);
+    }
+
+    .problema-number {
+      font-family: var(--ff-display);
+      font-size: 48px;
+      font-weight: 300;
+      color: var(--areia);
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+
+    .problema-title {
+      font-size: 15px;
+      font-weight: 500;
+      margin-bottom: 10px;
+      color: var(--grafite);
+    }
+
+    .problema-text {
+      font-size: 14px;
+      color: #666;
+      line-height: 1.7;
+    }
+
+    /* ── Ingredientes ─────────────────────────────── */
+    #ingredientes { background: var(--verde); color: var(--cream); }
+
+    #ingredientes .section-eyebrow { color: var(--dourado); }
+    #ingredientes .section-title { color: var(--cream); }
+    #ingredientes .section-sub { color: rgba(245, 240, 232, 0.7); }
+
+    .ingredientes-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: rgba(245, 240, 232, 0.1);
+    }
+
+    .ingrediente-item {
+      padding: 32px;
+      background: var(--verde);
+      transition: background 0.2s;
+    }
+
+    .ingrediente-item:hover { background: #243d33; }
+
+    .ingrediente-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--dourado);
+      margin-bottom: 16px;
+    }
+
+    .ingrediente-name {
+      font-family: var(--ff-display);
+      font-size: 22px;
+      font-weight: 300;
+      color: var(--cream);
+      margin-bottom: 6px;
+    }
+
+    .ingrediente-forma {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--dourado);
+      margin-bottom: 12px;
+    }
+
+    .ingrediente-desc {
+      font-size: 13px;
+      color: rgba(245, 240, 232, 0.65);
+      line-height: 1.65;
+    }
+
+    /* ── Como funciona ────────────────────────────── */
+    #como-funciona { background: var(--cream); }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 48px;
+      counter-reset: steps;
+    }
+
+    .step {
+      counter-increment: steps;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .step::before {
+      content: "0" counter(steps);
+      font-family: var(--ff-display);
+      font-size: 40px;
+      font-weight: 300;
+      color: var(--areia);
+      line-height: 1;
+    }
+
+    .step-title {
+      font-size: 17px;
+      font-weight: 500;
+      color: var(--grafite);
+    }
+
+    .step-text {
+      font-size: 14px;
+      color: #666;
+      line-height: 1.75;
+    }
+
+    /* ── CTA ──────────────────────────────────────── */
+    #cta {
+      background: var(--areia);
+      padding: 96px 0;
+      text-align: center;
+    }
+
+    #cta .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+    }
+
+    #cta .section-title { text-align: center; }
+
+    #cta .section-sub {
+      text-align: center;
+      margin-bottom: 0;
+    }
+
+    #cta .form-group { align-items: center; width: 100%; max-width: 480px; }
+    #cta .form-row { width: 100%; }
+
+    /* ── Footer ───────────────────────────────────── */
+    footer {
+      background: var(--grafite);
+      color: rgba(245, 240, 232, 0.5);
+      padding: 40px 24px;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      text-align: center;
+    }
+
+    .footer-logo .logo-mark { border-color: rgba(245, 240, 232, 0.3); color: rgba(245, 240, 232, 0.5); }
+    .footer-logo .logo-name { color: rgba(245, 240, 232, 0.5); }
+
+    .footer-text {
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      line-height: 1.8;
+    }
+
+    /* ── Contador ─────────────────────────────────── */
+    .counter-strip {
+      background: var(--verde);
+      color: var(--cream);
+      text-align: center;
+      padding: 14px;
+      font-size: 13px;
+      font-weight: 300;
+      letter-spacing: 0.06em;
+    }
+
+    .counter-strip strong { font-weight: 500; color: var(--dourado); }
+
+    /* ── Responsive ───────────────────────────────── */
+    @media (max-width: 768px) {
+      section { padding: 60px 0; }
+
+      #hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding-top: 100px;
+        min-height: auto;
+        padding-bottom: 60px;
+      }
+
+      .hero-content { align-items: center; order: 2; }
+      .hero-image-wrap { order: 1; }
+      .hero-image-wrap img { max-width: 260px; margin: 0 auto; }
+      .hero-sub { text-align: center; }
+      .form-group { align-items: center; width: 100%; }
+      .form-row { width: 100%; max-width: 400px; }
+
+      .problema-grid { grid-template-columns: 1fr; }
+      .ingredientes-grid { grid-template-columns: 1fr; }
+      .steps-grid { grid-template-columns: 1fr; gap: 32px; }
+    }
+
+    @media (max-width: 480px) {
+      .form-row { flex-direction: column; border: none; gap: 8px; }
+      .form-input {
+        border: 1px solid rgba(45, 74, 62, 0.4);
+        border-radius: 2px;
+        padding: 14px 16px;
+      }
+      .form-btn {
+        border-radius: 2px;
+        padding: 14px;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Header ── -->
+  <header>
+    <div class="logo">
+      <div class="logo-mark">as</div>
+      <span class="logo-name">aftershot</span>
+    </div>
+  </header>
+
+  <!-- ── Counter Strip ── -->
+  <div class="counter-strip">
+    <strong id="counter">—</strong> pessoas já na lista de espera
+  </div>
+
+  <!-- ── Hero ── -->
+  <section id="hero">
+    <div class="container" style="display:contents;">
+      <div class="hero-content">
+        <span class="hero-eyebrow">Lista de espera aberta</span>
+        <h1 class="hero-title display">
+          O suplemento que<br />
+          o GLP-1 <em>não</em> inclui.
+        </h1>
+        <p class="hero-sub">
+          Vitaminas, minerais e fitoterápicos formulados para repor o que
+          o Ozempic, Wegovy e Mounjaro subtraem do seu corpo todos os dias.
+        </p>
+
+        <div class="form-group">
+          <label class="form-label" for="email-hero">Entre na lista de espera</label>
+          <div class="form-row">
+            <input
+              class="form-input"
+              type="email"
+              id="email-hero"
+              placeholder="seu@email.com"
+              autocomplete="email"
+              required
+            />
+            <button class="form-btn" onclick="handleSubmit('email-hero', 'success-hero', this)">
+              Quero saber
+            </button>
+          </div>
+          <div class="form-success" id="success-hero">
+            ✓ Você está na lista. Avisaremos quando lançar.
+          </div>
+          <span class="form-note">Sem spam. Apenas novidades da After Shot.</span>
+        </div>
+      </div>
+
+      <div class="hero-image-wrap">
+        <img
+          src="../assets/produto/aftershot-daily-hero.png"
+          alt="AfterShot Daily — frasco premium"
+          loading="eager"
+        />
+        <span class="hero-badge">Em breve · Brasil</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── Problema ── -->
+  <section id="problema">
+    <div class="container">
+      <p class="section-eyebrow">O problema silencioso</p>
+      <h2 class="section-title display">
+        O GLP-1 funciona.<br />
+        Mas cobra um preço que ninguém conta.
+      </h2>
+      <p class="section-sub">
+        Com menos fome, você come menos. E junto com os quilos, vão embora
+        os nutrientes que o seu corpo mais precisa.
+      </p>
+
+      <div class="problema-grid">
+        <div class="problema-card">
+          <div class="problema-number display">01</div>
+          <p class="problema-title">Vitamina B12 esgotada</p>
+          <p class="problema-text">
+            Em 6 meses de GLP-1, estudos mostram que até 38% dos usuários
+            desenvolvem insuficiência de B12 — causando fadiga, queda de cabelo
+            e alterações neurológicas progressivas.
+          </p>
+        </div>
+        <div class="problema-card">
+          <div class="problema-number display">02</div>
+          <p class="problema-title">Magnésio em queda</p>
+          <p class="problema-text">
+            Menos calorias significam menos magnésio. O resultado são cãibras
+            noturnas, insônia, ansiedade e queda de performance — sintomas que
+            a maioria atribui ao medicamento.
+          </p>
+        </div>
+        <div class="problema-card">
+          <div class="problema-number display">03</div>
+          <p class="problema-title">Zinco, D e muito mais</p>
+          <p class="problema-text">
+            Vitamina D, zinco, cálcio, vitaminas do complexo B — cada nutriente
+            que deixa de ser ingerido cobra sua fatura em imunidade, músculo,
+            osso e humor.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Ingredientes ── -->
+  <section id="ingredientes">
+    <div class="container">
+      <p class="section-eyebrow">Formulação</p>
+      <h2 class="section-title display">
+        Cada ingrediente tem<br />
+        uma razão de estar aqui.
+      </h2>
+      <p class="section-sub">
+        Nenhum ingrediente sem evidência. Nenhuma dose sem intenção.
+        Transparência é parte da fórmula.
+      </p>
+
+      <div class="ingredientes-grid">
+        <div class="ingrediente-item">
+          <div class="ingrediente-dot"></div>
+          <p class="ingrediente-name display">Metilcobalamina</p>
+          <p class="ingrediente-forma">Vitamina B12 · Forma ativa</p>
+          <p class="ingrediente-desc">
+            A forma de B12 mais absorvível que existe — já convertida para o que o
+            seu corpo usa diretamente. Não precisa de conversão hepática.
+          </p>
+        </div>
+        <div class="ingrediente-item">
+          <div class="ingrediente-dot"></div>
+          <p class="ingrediente-name display">Magnésio Bisglicinato</p>
+          <p class="ingrediente-forma">Magnésio · Alta absorção</p>
+          <p class="ingrediente-desc">
+            Ligado ao aminoácido glicina para máxima biodisponibilidade.
+            Sem o efeito laxativo do óxido de magnésio comum.
+          </p>
+        </div>
+        <div class="ingrediente-item">
+          <div class="ingrediente-dot"></div>
+          <p class="ingrediente-name display">Vitamina D3</p>
+          <p class="ingrediente-forma">Colecalciferol · 2.000 UI</p>
+          <p class="ingrediente-desc">
+            A forma biologicamente ativa. Essencial para imunidade, saúde óssea
+            e equilíbrio do humor — especialmente com redução de gordura na dieta.
+          </p>
+        </div>
+        <div class="ingrediente-item">
+          <div class="ingrediente-dot"></div>
+          <p class="ingrediente-name display">KSM-66® Ashwagandha</p>
+          <p class="ingrediente-forma">Fitoterápico · Forma patenteada</p>
+          <p class="ingrediente-desc">
+            24 estudos clínicos. A forma mais estudada de ashwagandha.
+            Auxilia no equilíbrio do cortisol, energia e preservação
+            de massa magra durante perda de peso.
+          </p>
+        </div>
+        <div class="ingrediente-item">
+          <div class="ingrediente-dot"></div>
+          <p class="ingrediente-name display">Extrato de Gengibre</p>
+          <p class="ingrediente-forma">Zingiber officinale · 5% gingeróis</p>
+          <p class="ingrediente-desc">
+            Evidência robusta para conforto digestivo.
+            Formulado para quem passa pela fase de adaptação ao GLP-1,
+            quando náusea é mais frequente.
+          </p>
+        </div>
+        <div class="ingrediente-item">
+          <div class="ingrediente-dot"></div>
+          <p class="ingrediente-name display">Zinco Bisglicinato</p>
+          <p class="ingrediente-forma">Zinco · Alta biodisponibilidade</p>
+          <p class="ingrediente-desc">
+            Co-fator essencial para imunidade, saúde capilar e síntese proteica.
+            A queixa de queda de cabelo em usuários de GLP-1 frequentemente
+            tem raiz aqui.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Como funciona ── -->
+  <section id="como-funciona">
+    <div class="container">
+      <p class="section-eyebrow">Como usar</p>
+      <h2 class="section-title display">Simples por design.</h2>
+      <p class="section-sub">
+        Dois momentos no dia. Trinta dias por frasco. Uma rotina que cabe
+        em qualquer agenda.
+      </p>
+
+      <div class="steps-grid">
+        <div class="step">
+          <p class="step-title">Manhã — 1 cápsula</p>
+          <p class="step-text">
+            Com o café da manhã ou com um copo d'água.
+            As vitaminas hidrossolúveis e os fitoterápicos iniciam o dia
+            com o suporte que o seu corpo precisa.
+          </p>
+        </div>
+        <div class="step">
+          <p class="step-title">Noite — 1 cápsula</p>
+          <p class="step-text">
+            Com o jantar ou antes de dormir.
+            O magnésio bisglicinato favorece a qualidade do sono
+            e a recuperação muscular durante a noite.
+          </p>
+        </div>
+        <div class="step">
+          <p class="step-title">30 dias — consistência</p>
+          <p class="step-text">
+            Reposição nutricional é progressiva.
+            Os primeiros resultados — mais energia, menos cãibras,
+            melhor sono — chegam entre 2 e 4 semanas.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA ── -->
+  <section id="cta">
+    <div class="container">
+      <p class="section-eyebrow">Seja o primeiro</p>
+      <h2 class="section-title display">
+        aftershot daily<br />
+        <em>em breve.</em>
+      </h2>
+      <p class="section-sub">
+        Entre na lista de espera e seja avisado no lançamento.
+        Os primeiros da lista terão acesso antecipado e condição exclusiva.
+      </p>
+
+      <div class="form-group">
+        <div class="form-row">
+          <input
+            class="form-input"
+            type="email"
+            id="email-cta"
+            placeholder="seu@email.com"
+            autocomplete="email"
+            required
+          />
+          <button class="form-btn" onclick="handleSubmit('email-cta', 'success-cta', this)">
+            Entrar na lista
+          </button>
+        </div>
+        <div class="form-success" id="success-cta">
+          ✓ Você está na lista. Avisaremos quando lançar.
+        </div>
+        <span class="form-note">Sem spam. Apenas novidades da After Shot.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ── -->
+  <footer>
+    <div class="footer-inner">
+      <div class="logo footer-logo">
+        <div class="logo-mark">as</div>
+        <span class="logo-name">aftershot</span>
+      </div>
+      <p class="footer-text">
+        aftershot daily · suplemento alimentar · Brasil<br />
+        Este produto é um suplemento alimentar e não é um medicamento.<br />
+        Não substitui tratamento médico nem o acompanhamento de profissionais de saúde.
+      </p>
+      <p class="footer-text" style="margin-top:8px;">
+        © 2026 After Shot. Todos os direitos reservados.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    // ── Contador simulado (substituir por número real do Klaviyo/backend) ──
+    function animateCounter(target) {
+      const el = document.getElementById('counter');
+      const start = Math.floor(target * 0.6);
+      const duration = 1800;
+      const startTime = performance.now();
+      function update(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const ease = 1 - Math.pow(1 - progress, 3);
+        const value = Math.floor(start + (target - start) * ease);
+        el.textContent = value.toLocaleString('pt-BR');
+        if (progress < 1) requestAnimationFrame(update);
+      }
+      requestAnimationFrame(update);
+    }
+
+    // Número inicial simulado — substituir por chamada de API real
+    window.addEventListener('load', () => animateCounter(347));
+
+    // ── Form Handler ──
+    // Para integrar com Klaviyo, substitua o corpo desta função pelo embed do Klaviyo.
+    // Para integrar com Formspree: POST para https://formspree.io/f/SEU_ID
+    async function handleSubmit(inputId, successId, btn) {
+      const input = document.getElementById(inputId);
+      const success = document.getElementById(successId);
+      const email = input.value.trim();
+
+      if (!email || !email.includes('@')) {
+        input.style.borderColor = '#c0392b';
+        input.focus();
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = '...';
+
+      try {
+        // ── INTEGRAÇÃO ──────────────────────────────────────────────────────
+        // Opção A — Formspree (gratuito, sem backend):
+        //   1. Crie conta em formspree.io
+        //   2. Crie um novo form e copie o ID
+        //   3. Substitua 'SEU_FORM_ID' abaixo
+        //
+        // const res = await fetch('https://formspree.io/f/SEU_FORM_ID', {
+        //   method: 'POST',
+        //   headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        //   body: JSON.stringify({ email })
+        // });
+        //
+        // Opção B — Klaviyo:
+        //   Use o embed de formulário do Klaviyo e remova este formulário HTML.
+        //   Ou use a API: https://a.klaviyo.com/api/profile-subscriptions/
+        // ────────────────────────────────────────────────────────────────────
+
+        // Simulação local enquanto backend não está configurado:
+        await new Promise(r => setTimeout(r, 800));
+
+        // Sucesso
+        input.parentElement.style.display = 'none';
+        success.style.display = 'block';
+
+        // Atualiza contador
+        const current = parseInt(document.getElementById('counter').textContent.replace('.', '')) || 347;
+        animateCounter(current + 1);
+
+      } catch (err) {
+        btn.disabled = false;
+        btn.textContent = 'Quero saber';
+        alert('Erro ao enviar. Tente novamente.');
+      }
+    }
+
+    // ── Smooth entrada de elementos ──
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.opacity = '1';
+          e.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.problema-card, .ingrediente-item, .step').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
