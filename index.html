@@ -7,7 +7,7 @@
   <meta name="description" content="O primeiro suplemento premium formulado para quem usa GLP-1. Seja o primeiro a saber quando lançarmos." />
   <meta property="og:title" content="aftershot daily — lista de espera" />
   <meta property="og:description" content="Vitaminas, minerais e fitoterápicos formulados para a geração do GLP-1." />
-  <meta property="og:image" content="../assets/produto/aftershot-daily-hero.png" />
+  <meta property="og:image" content="./aftershot-daily-hero.png" />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -112,10 +112,14 @@
     #hero {
       min-height: 100svh;
       padding-top: 100px;
+      padding-left: 24px;
+      padding-right: 24px;
       display: grid;
       grid-template-columns: 1fr 1fr;
       align-items: center;
       gap: 60px;
+      max-width: 1100px;
+      margin: 0 auto;
     }
 
     .hero-content { display: flex; flex-direction: column; gap: 28px; }
@@ -522,7 +526,7 @@
 
   <!-- ── Hero ── -->
   <section id="hero">
-    <div class="container" style="display:contents;">
+    <div style="display:contents;">
       <div class="hero-content">
         <span class="hero-eyebrow">Lista de espera aberta</span>
         <h1 class="hero-title display">
@@ -558,7 +562,7 @@
 
       <div class="hero-image-wrap">
         <img
-          src="../assets/produto/aftershot-daily-hero.png"
+          src="./aftershot-daily-hero.png"
           alt="AfterShot Daily — frasco premium"
           loading="eager"
         />
