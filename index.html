@@ -802,9 +802,11 @@
     // Número inicial simulado — substituir por chamada de API real
     window.addEventListener('load', () => animateCounter(347));
 
+    // ── Supabase ──
+    const SUPABASE_URL = 'https://oxjyseayvpxhycoxuza.supabase.co';
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im94anlzZWF2c3ZweGh5Y294dXphIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgxODA5MDEsImV4cCI6MjA5Mzc1NjkwMX0.7RXfvazQe3Pug5gmctGAvVH6uMr4inPffO8ERMjeJ7s';
+
     // ── Form Handler ──
-    // Para integrar com Klaviyo, substitua o corpo desta função pelo embed do Klaviyo.
-    // Para integrar com Formspree: POST para https://formspree.io/f/SEU_ID
     async function handleSubmit(inputId, successId, btn) {
       const input = document.getElementById(inputId);
       const success = document.getElementById(successId);
@@ -820,33 +822,29 @@
       btn.textContent = '...';
 
       try {
-        // ── INTEGRAÇÃO ──────────────────────────────────────────────────────
-        // Opção A — Formspree (gratuito, sem backend):
-        //   1. Crie conta em formspree.io
-        //   2. Crie um novo form e copie o ID
-        //   3. Substitua 'SEU_FORM_ID' abaixo
-        //
-        // const res = await fetch('https://formspree.io/f/SEU_FORM_ID', {
-        //   method: 'POST',
-        //   headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        //   body: JSON.stringify({ email })
-        // });
-        //
-        // Opção B — Klaviyo:
-        //   Use o embed de formulário do Klaviyo e remova este formulário HTML.
-        //   Ou use a API: https://a.klaviyo.com/api/profile-subscriptions/
-        // ────────────────────────────────────────────────────────────────────
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/waitlist`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'apikey': SUPABASE_KEY,
+            'Authorization': `Bearer ${SUPABASE_KEY}`,
+            'Prefer': 'return=minimal'
+          },
+          body: JSON.stringify({ email })
+        });
 
-        // Simulação local enquanto backend não está configurado:
-        await new Promise(r => setTimeout(r, 800));
-
-        // Sucesso
-        input.parentElement.style.display = 'none';
-        success.style.display = 'block';
-
-        // Atualiza contador
-        const current = parseInt(document.getElementById('counter').textContent.replace('.', '')) || 347;
-        animateCounter(current + 1);
+        if (res.ok || res.status === 201) {
+          input.parentElement.style.display = 'none';
+          success.style.display = 'block';
+          const current = parseInt(document.getElementById('counter').textContent.replace('.', '')) || 347;
+          animateCounter(current + 1);
+        } else if (res.status === 409) {
+          // Email já cadastrado
+          input.parentElement.style.display = 'none';
+          success.style.display = 'block';
+        } else {
+          throw new Error('Erro ao salvar');
+        }
 
       } catch (err) {
         btn.disabled = false;
